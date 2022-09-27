@@ -37,10 +37,14 @@ function searchFilter(){
 function showMovies(){
   moviesList = moviesArray;
   CONTAINER.innerHTML = "";
+  
   if (searchInput.value != ""){
     searchFilter()
     for (let i = 0; i < moviesList.length; i++) {
     let movie = moviesList[i];
+    let fecha = new Date (movie.release_date);
+    let anio = fecha.getFullYear();
+
     CONTAINER.innerHTML += 
     `
     <button class="btn btn-dark" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop${i}" aria-controls="offcanvasTop${i}"><p>${movie.title} <p>Calificacion: </p> `+ commentRating(movie.vote_average / 2) +`</p> <p>${movie.tagline}</p></button>
@@ -61,10 +65,10 @@ function showMovies(){
         <div class="dropdown">
           <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">Dropdown button</button>
           <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
-            <li><p>Year:`+movie.release_date+`</p></li>
-            <li><p>Runtime:`+movie.runtime+`</p></li>
-            <li><p>Budget`+movie.budget+`</p></li>
-            <li><p>Revenue:`+movie.revenue+`</p></li>
+            <li><p><strong>Year: </strong>`+anio+`</p></li>
+            <li><p><strong>Runtime: </strong>`+movie.runtime+`</p></li>
+            <li><p><strong>Budget: </strong>`+movie.budget+`</p></li>
+            <li><p><strong>Revenue: $</strong>`+movie.revenue+`</p></li>
           </ul>
         </div>
         </div>
